@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using Microsoft.WindowsAzure.MobileServices;
 
 namespace Loco.Azure
 {
-    public abstract class AzureModelBase : ModelBase, INotifyPropertyChanged
+    public abstract class AzureModelBase : ModelBase
     {
         private DateTime _createdAt;
         private DateTime _updatedAt;
@@ -17,7 +15,7 @@ namespace Loco.Azure
             set
             {
                 _createdAt = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
         }
 
@@ -28,20 +26,8 @@ namespace Loco.Azure
             set
             {
                 _updatedAt = value;
-                OnPropertyChanged();
+                RaisePropertyChanged();
             }
-        }
-
-        #region INotifyPropertyChanged Members
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

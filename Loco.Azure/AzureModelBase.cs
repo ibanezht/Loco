@@ -7,6 +7,7 @@ namespace Loco.Azure
     {
         private DateTime _createdAt;
         private DateTime _updatedAt;
+        private string _version;
 
         [CreatedAt]
         public DateTime CreatedAt
@@ -26,6 +27,17 @@ namespace Loco.Azure
             set
             {
                 _updatedAt = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        [Version]
+        public string Version
+        {
+            get { return _version; }
+            set
+            {
+                _version = value;
                 RaisePropertyChanged();
             }
         }

@@ -3,7 +3,7 @@ using Microsoft.WindowsAzure.MobileServices;
 
 namespace Loco.Azure
 {
-    public abstract class AzureModelBase : ModelBase
+    public abstract class AzureModel : Model
     {
         private DateTime _createdAt;
         private DateTime _updatedAt;

@@ -1,21 +1,25 @@
 ﻿using System;
-using Microsoft.Practices.ServiceLocation;
+using System.Collections.Generic;
 
 namespace Loco
 {
     public class SynchronizedStoreFactory
     {
-        public ISynchronizedStore<T> Create<T>() where T : Model
+        private static readonly Dictionary<Type, ISynchronizedStore> _storeDictionary = new Dictionary<Type, ISynchronizedStore>();
+
+        public ISynchronizedStore<T> Get<T>() where T : Model
         {
-            var localStore = ServiceLocator.Current.GetInstance<ILocalStore<T>>();
-            if (localStore == null)
-                throw new InvalidOperationException("ILocalStore<T> implementation not registered.");
+            var modelType = typeof(T);
+            var retval = _storeDictionary[modelType] as SynchronizedStore<T>;
 
-            var cloudStore = ServiceLocator.Current.GetInstance<ICloudStore<T>>();
-            if (cloudStore == null)
-                throw new InvalidOperationException("ICloudStore<T> implementation not registered.");
+            if (retval == null)
+            {
+                retval = new SynchronizedStore<T>(null, null);
 
-            return new SynchronizedStore<T>(localStore, cloudStore);
+                _storeDictionary.Add(modelType, retval);
+            }
+
+            return retval;
         }
     }
 }

@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 
 namespace Loco.Azure
 {
-    internal class AzureCloudStore : ICloudStore<AzureModel>
+    internal class AzureCloudStore<T> : ICloudStore<T>
+        where T : AzureModel
     {
-        #region ICloudStore<AzureModel> Members
+        #region ICloudStore<T> Members
 
-        public Task AddAsync(AzureModel model)
+        public Task AddAsync(T model)
         {
             throw new NotImplementedException();
         }

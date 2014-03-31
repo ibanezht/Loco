@@ -2,7 +2,8 @@
 
 namespace Loco
 {
-    public interface ICloudStore<T> where T : Model
+    public interface ICloudStore<T>
+        where T : Model
     {
         Task AddAsync(T model);
     }

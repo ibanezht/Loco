@@ -53,8 +53,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SynchronizedStoreFactoryTests.cs" />
+    <Compile Include="SynchronizedStoreContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FakeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Loco\Loco.csproj">

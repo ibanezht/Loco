@@ -9,10 +9,16 @@ namespace Loco
         private readonly ICloudStore<T> _cloudStore;
         private readonly ILocalStore<T> _localStore;
 
-        internal SynchronizedStore(ILocalStoreConfig localStoreConfig, ICloudStoreConfig cloudStoreConfig)
+        internal SynchronizedStore(ILocalStore<T> localStore, ICloudStore<T> cloudStore)
         {
-            _localStore = localStoreConfig.GetLocalStore<T>();
-            _cloudStore = cloudStoreConfig.GetCloudStore<T>();
+            if (localStore == null)
+                throw new ArgumentNullException("localStore");
+
+            if (cloudStore == null)
+                throw new ArgumentNullException("cloudStore");
+
+            _localStore = localStore;
+            _cloudStore = cloudStore;
         }
 
         #region ISynchronizedStore<T> Members

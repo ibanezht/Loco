@@ -48,9 +48,9 @@ namespace Loco.Tests
         {
             SynchronizedStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
 
-            var syncStore = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            var synchronizedStore = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
 
-            Assert.IsNotNull(syncStore);
+            Assert.IsNotNull(synchronizedStore);
         }
 
         [TestMethod]
@@ -65,10 +65,10 @@ namespace Loco.Tests
         {
             SynchronizedStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
 
-            var syncStore1 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
-            var syncStore2 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            var synchronizedStore1 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            var synchronizedStore2 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
 
-            Assert.AreEqual(syncStore1, syncStore2);
+            Assert.AreEqual(synchronizedStore1, synchronizedStore2);
         }
     }
 }

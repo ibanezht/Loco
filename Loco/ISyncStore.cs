@@ -2,11 +2,11 @@ using System.Threading.Tasks;
 
 namespace Loco
 {
-    public interface ISynchronizedStore<T> : ISynchronizedStore
+    public interface ISyncStore<T> : ISyncStore
         where T : Model
     {
         Task AddAsync(T model);
     }
 
-    public interface ISynchronizedStore { }
+    public interface ISyncStore { }
 }

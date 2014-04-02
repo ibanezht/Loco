@@ -1,5 +1,4 @@
 ﻿using System;
-using Loco.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -27,29 +26,29 @@ namespace Loco.Tests
         [TestInitialize]
         public void TestInitialize()
         {
-            SynchronizedStoreContainer.Clear();
+            SyncStoreContainer.Clear();
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterType_LocalStore_Null()
         {
-            SynchronizedStoreContainer.RegisterType<Item>(null, _cloudStoreConfigMock.Object);
+            SyncStoreContainer.RegisterType<Item>(null, _cloudStoreConfigMock.Object);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RegisterType_CloudStore_Null()
         {
-            SynchronizedStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, null);
+            SyncStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, null);
         }
 
         [TestMethod]
         public void Get_Registered()
         {
-            SynchronizedStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
+            SyncStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
 
-            var synchronizedStore = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            var synchronizedStore = SyncStoreContainer.GetSyncStore<Item>();
 
             Assert.IsNotNull(synchronizedStore);
         }
@@ -58,16 +57,16 @@ namespace Loco.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void Get_Not_Registered()
         {
-            SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            SyncStoreContainer.GetSyncStore<Item>();
         }
 
         [TestMethod]
         public void Get_Same_Instance()
         {
-            SynchronizedStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
+            SyncStoreContainer.RegisterType<Item>(_localStoreConfigMock.Object, _cloudStoreConfigMock.Object);
 
-            var synchronizedStore1 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
-            var synchronizedStore2 = SynchronizedStoreContainer.GetSynchronizedStore<Item>();
+            var synchronizedStore1 = SyncStoreContainer.GetSyncStore<Item>();
+            var synchronizedStore2 = SyncStoreContainer.GetSyncStore<Item>();
 
             Assert.AreEqual(synchronizedStore1, synchronizedStore2);
         }

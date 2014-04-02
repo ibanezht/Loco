@@ -1,4 +1,4 @@
-﻿namespace Loco.Tests.Models
+﻿namespace Loco.Tests
 {
     public class Item : Model { }
 }

@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace Loco
 {
-    public static class SynchronizedStoreContainer
+    public static class SyncStoreContainer
     {
-        private static readonly Dictionary<Type, ISynchronizedStore> _storeDictionary = new Dictionary<Type, ISynchronizedStore>();
+        private static readonly Dictionary<Type, ISyncStore> _storeDictionary = new Dictionary<Type, ISyncStore>();
 
         public static void Clear()
         {
             _storeDictionary.Clear();
         }
 
-        public static ISynchronizedStore<T> GetSynchronizedStore<T>()
+        public static ISyncStore<T> GetSyncStore<T>()
             where T : Model
         {
             var type = typeof(T);
@@ -20,7 +20,7 @@ namespace Loco
             if (!_storeDictionary.ContainsKey(type))
                 throw new InvalidOperationException(string.Format("The type {0} is not registered.", type));
 
-            return (SynchronizedStore<T>)_storeDictionary[type];
+            return (SyncStore<T>)_storeDictionary[type];
         }
 
         public static void RegisterType<T>(ILocalStoreConfig localStoreConfig, ICloudStoreConfig cloudStoreConfig)
@@ -35,7 +35,7 @@ namespace Loco
             var localStore = localStoreConfig.GetLocalStore<T>();
             var cloudStore = cloudStoreConfig.GetCloudStore<T>();
 
-            var synchronizedStore = new SynchronizedStore<T>(localStore, cloudStore);
+            var synchronizedStore = new SyncStore<T>(localStore, cloudStore);
 
             _storeDictionary.Add(typeof(T), synchronizedStore);
         }

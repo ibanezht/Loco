@@ -5,7 +5,7 @@ using Moq;
 namespace Loco.Tests
 {
     [TestClass]
-    public class SynchronizedStoreContainerTests
+    public class SyncStoreContainerTests
     {
         private static Mock<ILocalStoreConfig> _localStoreConfigMock;
         private static Mock<ICloudStoreConfig> _cloudStoreConfigMock;

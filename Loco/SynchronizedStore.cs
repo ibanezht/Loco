@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 
 namespace Loco
 {
-    public class SyncStore<T> : ISyncStore<T>
+    public class SynchronizedStore<T> : ISynchronizedStore<T>
         where T : Model
     {
         private readonly ICloudStore<T> _cloudStore;
         private readonly ILocalStore<T> _localStore;
 
-        internal SyncStore(ILocalStore<T> localStore, ICloudStore<T> cloudStore)
+        internal SynchronizedStore(ILocalStore<T> localStore, ICloudStore<T> cloudStore)
         {
             if (localStore == null)
                 throw new ArgumentNullException("localStore");
@@ -21,7 +21,7 @@ namespace Loco
             _cloudStore = cloudStore;
         }
 
-        #region ISyncStore<T> Members
+        #region ISynchronizedStore<T> Members
 
         public Task AddAsync(T model)
         {

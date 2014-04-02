@@ -54,7 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Item.cs" />
-    <Compile Include="SyncStoreContainerTests.cs" />
+    <Compile Include="SynchronizedStoreContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

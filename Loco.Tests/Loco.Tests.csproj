@@ -54,6 +54,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Item.cs" />
+    <Compile Include="SQLite\SQLiteLocalStoreTests.cs" />
     <Compile Include="SynchronizedStoreContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,6 +66,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Azure\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
